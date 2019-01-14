@@ -38,7 +38,7 @@ public class TaskToDoController {
 	public String showTasksToDo(ModelMap model) {
 		 model.addAttribute("activeTasksToDo", "active");
 		 String name = getLoggedInUserName(model);
-		model.put("tasksToDo", repository.findByUser(name));
+		model.put("tasksToDo", repository.findByUserName(name));
 		return "list-tasks";
 	}
 	
@@ -64,11 +64,7 @@ public class TaskToDoController {
 	
 	@RequestMapping(value = "/update-task", method = RequestMethod.GET)
 	public String showTaskToUpdate(@RequestParam int id, ModelMap model) {
-
-		/*TODO: better to use Optional<TaskToDo> aTask = repository.findById(id);
-		later I will change this for not using getOne. 
-		if no entity in database, it will throw EntityNotFoundException*/
-		TaskToDo aTask = repository.getOne(id);
+		TaskToDo aTask = repository.findById(id).get();
 		model.put("taskToDo", aTask);
 		return "taskToDo";
 	}
@@ -78,7 +74,7 @@ public class TaskToDoController {
 		if (result.hasErrors()) {
 			return "taskToDo";
 		}
-		todo.setUser(getLoggedInUserName(model));
+		todo.setUserName(getLoggedInUserName(model));
 		repository.save(todo);
 		
 		return "redirect:/list-tasks";
@@ -89,7 +85,7 @@ public class TaskToDoController {
 		if (result.hasErrors()) {
 			return "taskToDo";
 		}
-		todo.setUser(getLoggedInUserName(model));
+		todo.setUserName(getLoggedInUserName(model));
 		repository.save(todo);
 		return "redirect:/list-tasks";
 	}

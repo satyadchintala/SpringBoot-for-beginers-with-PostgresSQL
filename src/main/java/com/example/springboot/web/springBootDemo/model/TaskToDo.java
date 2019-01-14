@@ -5,7 +5,9 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,9 +15,9 @@ public class TaskToDo {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String user;
+	private String userName;
 	@Size(min=10, message="Enter atleast 10 characters")
-	private String desc;
+	private String description;
 	private Date targetDate;
 	private boolean isCompleted;
 	
@@ -25,8 +27,8 @@ public class TaskToDo {
 	public TaskToDo(int id, String user, String desc, Date targetDate, boolean isCompleted) {
 		super();
 		this.id = id;
-		this.user = user;
-		this.desc = desc;
+		this.userName = user;
+		this.description = desc;
 		this.targetDate = targetDate;
 		this.isCompleted = isCompleted;
 	}
@@ -36,17 +38,17 @@ public class TaskToDo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getUser() {
-		return user;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setUserName(String user) {
+		this.userName = user;
 	}
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String desc) {
+		this.description = desc;
 	}
 	public Date getTargetDate() {
 		return targetDate;
@@ -65,7 +67,7 @@ public class TaskToDo {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(desc, id, isCompleted, targetDate, user);
+		return Objects.hash(description, id, isCompleted, targetDate, userName);
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
@@ -86,7 +88,7 @@ public class TaskToDo {
 	 */
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", user=" + user + ", desc=" + desc + ", targetDate=" + targetDate + ", isCompleted="
+		return "Task [id=" + id + ", user=" + userName + ", desc=" + description + ", targetDate=" + targetDate + ", isCompleted="
 				+ isCompleted + "]";
 	}
 	

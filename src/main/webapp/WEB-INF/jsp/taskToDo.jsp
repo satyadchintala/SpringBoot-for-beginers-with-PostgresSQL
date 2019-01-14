@@ -5,9 +5,9 @@
 		<form:form method="post" modelAttribute="taskToDo">
 			<form:hidden path="id"/>
 			<fieldset class="form-group">
-				<form:label path="desc">Description: </form:label>
-				<form:input path="desc" type="text" class="form-control" required="required" />
-				<form:errors path="desc" cssClass="text-warning"/>
+				<form:label path="description">Description: </form:label>
+				<form:input path="description" type="text" class="form-control" required="required" />
+				<form:errors path="description" cssClass="text-warning"/>
 				<br/>
 				<form:label path="targetDate">Target Date: </form:label>
 				<form:input path="targetDate" type="text" class="form-control" required="required" />
